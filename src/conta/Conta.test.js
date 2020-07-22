@@ -1,19 +1,29 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import ContaService from './ContaService';
+import axios from 'axios';
+import { render, fireEvent, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import Conta from './Conta';
 
+jest.mock('axios');
+
+afterEach(() => {
+  axios.get.mockClear();
+})
+
+beforeEach(() => {
+  axios.get.mockResolvedValue({data: {saldo: 1234.57}});
+});
+
 describe('Componente da Conta', () => {
-  it('renderiza Conta', () => {
+  it('renderiza Conta', async () => {
     render(<Conta />);
+    await waitForElementToBeRemoved(() => screen.getByText('carregando'));
     const títuloDaConta = screen.getByText('Conta');
     expect(títuloDaConta).toBeInTheDocument();
   });
 
-  it('apresenta valor do saldo da conta com símbolo de REAL', () => {
-    ContaService.ObterSaldo = jest.fn(() => 1234.57)
-    
+  it('apresenta valor do saldo da conta com símbolo de REAL', async () => {
     render(<Conta />);
+    await waitForElementToBeRemoved(() => screen.getByText('carregando'));
     const saldo = screen.getByText((content, node) => {
       const hasText = (node) => node.textContent === "Saldo: R$ 1234,57";
       const nodeHasText = hasText(node);
@@ -27,15 +37,16 @@ describe('Componente da Conta', () => {
   });
 
   describe('opção de esconder/mostrar saldo', ()=> {
-    it('apresenta opção esconder saldo da conta', () => {
+    it('apresenta opção esconder saldo da conta', async () => {
       render(<Conta />);
+      await waitForElementToBeRemoved(() => screen.getByText('carregando'));
       const esconderSaldo = screen.getByText('Esconder saldo');
       expect(esconderSaldo).toBeInTheDocument();
     });
   
-    it('alterna entre opção de mostrar saldo e esconder saldo ao ser clicada', () => {
+    it('alterna entre opção de mostrar saldo e esconder saldo ao ser clicada', async () => {
       render(<Conta />);
-  
+      await waitForElementToBeRemoved(() => screen.getByText('carregando'));
       fireEvent.click(screen.getByText('Esconder saldo'));
   
       expect(screen.queryByText('Esconder saldo')).not.toBeInTheDocument();
@@ -46,8 +57,9 @@ describe('Componente da Conta', () => {
       expect(screen.getByText('Esconder saldo')).toBeInTheDocument();
     });
   
-    it('esconde o valor do saldo do saldo da conta quando clica em Esconder saldo', () => {
+    it('esconde o valor do saldo do saldo da conta quando clica em Esconder saldo', async () => {
       render(<Conta />);
+      await waitForElementToBeRemoved(() => screen.getByText('carregando'));
       
       fireEvent.click(screen.getByText('Esconder saldo'));
   
