@@ -6,6 +6,6 @@ describe('Componente principal', () => {
   it('mostra o nome do banco', () => {
     render(<App />);
 
-    expect(screen.getByText(`ByteBank`)).toBeInTheDocument();
+    expect(screen.getByText('ByteBank')).toBeInTheDocument();
   });
 });

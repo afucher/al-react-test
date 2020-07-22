@@ -1,5 +1,31 @@
 {
     "conta": {
         "saldo": 1234.56
-    }
+    },
+    "transacoes": [
+        {
+            "id": 1,
+            "estabelecimento": "Alura",
+            "valor": 33.08,
+            "data": "2020/7/1"
+        },
+        {
+            "id": 2,
+            "estabelecimento": "Caelum",
+            "valor": 27.67,
+            "data": "2020/7/9"
+        },
+        {
+            "id": 3,
+            "estabelecimento": "Steam",
+            "valor": 97.62,
+            "data": "2020/7/10"
+        },
+        {
+            "id": 4,
+            "estabelecimento": "Mercado do bairro",
+            "valor": 40.88,
+            "data": "2020/7/16"
+        }
+    ]
 }
