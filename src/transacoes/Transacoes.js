@@ -12,7 +12,7 @@ const Transações = () => {
         carregar();
     }, [])
 
-    return <div>
+    return <div data-testid="transacoes">
         {transacoes
             .map(({id, estabelecimento, valor, data}) => <Transação key={id} estabelecimento={estabelecimento} valor={valor} data={new Date(data)}/>)}
     </div>

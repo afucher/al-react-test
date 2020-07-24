@@ -19,11 +19,19 @@ describe('Componente de transações', () => {
             "estabelecimento": "Alura",
             "valor": 33.08,
             "data": "2020/7/1"
+        },
+        {
+            "id": 2,
+            "estabelecimento": "Mercado",
+            "valor": 20,
+            "data": "2020/7/9"
         }]});
 
         render(<Transações />);
 
         await waitForElement(() => screen.getByText("Alura"));
+
+        expect(screen.getByTestId('transacoes').children.length).toBe(2);
     })
     
 })

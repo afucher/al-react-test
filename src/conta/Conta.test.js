@@ -36,7 +36,7 @@ describe('Componente da Conta', () => {
     expect(saldo).toBeInTheDocument();
   });
 
-  describe('opção de esconder/mostrar saldo', ()=> {
+  describe('uma conta tem a opção de esconder/mostrar saldo', ()=> {
     it('apresenta opção esconder saldo da conta', async () => {
       render(<Conta />);
       await waitForElementToBeRemoved(() => screen.getByText('carregando'));
