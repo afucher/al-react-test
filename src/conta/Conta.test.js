@@ -5,11 +5,11 @@ import Conta from './Conta';
 
 jest.mock('axios');
 
-afterEach(() => {
+afterAll(() => {
   axios.get.mockClear();
 })
 
-beforeEach(() => {
+beforeAll(() => {
   axios.get.mockResolvedValue({data: {saldo: 1234.57}});
 });
 
