@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { render, wait, waitForElement, screen } from '@testing-library/react';
+import { render, wait, screen } from '@testing-library/react';
 import Transações from './Transacoes';
 
 jest.mock('axios');
@@ -29,7 +29,7 @@ describe('Componente de transações', () => {
 
         render(<Transações />);
 
-        await waitForElement(() => screen.getByText("Alura"));
+        await screen.findByText("Alura");
 
         expect(screen.getByTestId('transacoes').children.length).toBe(2);
     })
