@@ -11,6 +11,7 @@ describe('Componente de transações', () => {
         axios.get.mockResolvedValue({data:[]});
         render(<Transações />)
         await wait(() => expect(axios.get).toHaveBeenCalledTimes(1))
+        expect(axios.get).toHaveBeenCalledWith('http://localhost:3001/transacoes')
     })
 
     it('mostra transações que vieram da API', async () => {
